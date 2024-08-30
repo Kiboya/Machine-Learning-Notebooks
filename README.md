@@ -47,7 +47,7 @@ This repo supports GitHub Codespaces.
   </tr>
   <tr>
      <td class="tg-yw4l">LSTM on-device solar energy forecasting</td>
-      <td class="tg-yw4l">Use LSTM for predicting future solar energy on a development board</td>
+      <td class="tg-yw4l">Use LSTM to predict future solar energy on a development board</td>
       <td class="tg-yw4l"><a href="https://colab.research.google.com/drive/1X2Wshm4cuiEq0nKInUCNrMwj5XO8Fq5-?usp=sharing">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" width = '' >
 </a></td>
