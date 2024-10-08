@@ -1,3 +1,5 @@
+# Deep Learning Basics
+
 This markdown file contains a set of notes derived from the [YouTube series on deep learning](https://youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&si=LmaIb4KT4XYY7Tke) by [3Blue1Brown](https://youtube.com/@3blue1brown?si=wxfEm81NdWnHvIoJ).
 The series offers a visual and intuitive explanation of the fundamentals of deep learning, from the basics of neural networks to the intricacies of backpropagation and gradient descent. These notes aim to be a useful reference for anyone looking to grasp the foundational ideas in machine learning.
 
@@ -7,7 +9,7 @@ The series offers a visual and intuitive explanation of the fundamentals of deep
 > 1. Input Layer: Composed of 784 neurons, each representing a pixel in a 28x28 grayscale image.
 > 		- The activation of each neuron corresponds to the pixel's intensity, ranging from 0 (black) to 1 (white).
 > 	
-> 		![[Image1.png]]
+> 		![Image1.png](./Deep%20Learning%20Basics/Image1.png)
 > 	
 > 2. Hidden Layers: The network includes two hidden layers, each consisting of 16 neurons.
 > 		- The number of neurons and layers is flexible and can be adjusted depending on the specific requirements of the network.
@@ -32,7 +34,7 @@ However, to identify these subcomponents, we must first recognize more basic pat
 
 When an image is processed, the neurons corresponding to the detected edges are activated, which in turn trigger neurons associated with the subcomponents. Ultimately, this activates the neuron associated with the recognized digit.
 
-![[Image2.png]]
+![Image2.png](./Deep%20Learning%20Basics/Image2.png)
 
 The goal is to develop a system that progressively builds complexity by combining simple elements: pixels into edges, edges into patterns, and patterns into recognizable digits.
 
@@ -54,7 +56,7 @@ If we set most of the weights for pixels to zero, except for positive weights in
 
 To detect an edge, we might assign **negative weights** to the surrounding pixels. This approach ensures that the sum is maximized when the central pixels are bright, while the surrounding pixels are darker, thereby highlighting the presence of an edge.
 
-![[Image3.png]]
+![Image3.png](./Deep%20Learning%20Basics/Image3.png)
 
 ### Activation Function
 
@@ -62,7 +64,7 @@ When calculating a weighted sum, the result could be any real number. However, f
 
 A commonly used function for this purpose is the **sigmoid function**, also known as the logistic curve. This function ensures that highly negative inputs produce values close to 0, highly positive inputs produce values near 1, and values around 0 produce a smooth transition between the two extremes.
 
-![[Image4.png]]
+![Image4.png](./Deep%20Learning%20Basics/Image4.png)
 
 Thus, the activation of a neuron represents how positive or negative the relevant weighted sum is.
 
@@ -107,7 +109,6 @@ Taking the weighted sum of activations corresponds to one term in the matrix-vec
 This can be written as:
 
 ```math
-$$
 \begin{bmatrix}
     a_{0}^{(1)} \\ a_{1}^{(1)} \\ \vdots \\ a_{n}^{(1)}
 \end{bmatrix} =\sigma\left(\begin{bmatrix}
@@ -121,7 +122,6 @@ $$
 \end{bmatrix} + \begin{bmatrix}
     b_{0} \\ b_{1} \\ \vdots \\ b_{n} 
 \end{bmatrix}\right)
-$$
 ```
 
 Once we express the weights, activations, and biases as their own symbols, the transition between layers can be captured concisely as:
@@ -140,11 +140,11 @@ Initially, we randomly assign values to all the weights and biases. Naturally, t
 
 To improve the network's performance, we define a **cost function**, which provides a way for the computer to measure how far off its predictions are. For instance, in the case of classifying a digit as "3," the network should ideally have an activation of 1 for the neuron representing "3" and activations of 0 for all other neurons.
 
-![[Image5.png]]
+![Image5.png](./Deep%20Learning%20Basics/Image5.png)
 
 To calculate the cost for a single training example, we sum the squares of the differences between the actual output activations and the desired values. A lower value indicates a better performance.
 
-![[Image6.png]]
+![Image6.png](./Deep%20Learning%20Basics/Image6.png)
 
 However, to evaluate the overall performance, we compute the **average cost** over the entire training dataset. When we talk about the network learning, we're referring to minimizing this cost function. 
 
@@ -156,18 +156,18 @@ To simplify, let's consider a function that has only one input and one output, r
 
 A practical approach is to begin with any input and determine in which direction you should move to lower the output. If you can calculate the slope of the function at your current point, you can decide whether to shift left or right: move left if the slope is positive and right if the slope is negative.
 
-![[Image7.png]]
+![Image7.png](./Deep%20Learning%20Basics/Image7.png)
 
 By repeating this process, we gradually move toward a **local minimum** of the function, much like a ball rolling down a hill. However, it's important to note that the local minimum we reach might not be the smallest possible value, or **global minimum**, of the cost function, depending on where we started.
 ## Gradient Descent
 
 In this scenario, the input space can be imagined as the **xy-plane**, with the **cost function** represented as a surface above it. Instead of merely considering the slope of a function at a single point, we now need to determine which direction in the input space will reduce the cost function most rapidly. This is the **downhill direction**.
 
-![[Image8.png]]
+![Image8.png](./Deep%20Learning%20Basics/Image8.png)
 
 In multivariable calculus, the **gradient** of a function points in the direction of the steepest ascent, indicating where you would step to increase the function’s output most rapidly. By taking the negative of this gradient, we find the direction that will **decrease** the function most quickly. The length of the gradient vector represents how steep that descent is.
 
-![[Image9.png]]
+![Image9.png](./Deep%20Learning%20Basics/Image9.png)
 
 The key algorithm for minimizing the function involves computing the gradient direction, taking a small step downhill, and repeating this process iteratively.
 
@@ -175,7 +175,7 @@ The key algorithm for minimizing the function involves computing the gradient di
 
 The same principle applies to a neural network, though it deals with many more inputs—up to 13,000 weights and biases in our example. These can be organized into a **giant column vector**. The **negative gradient of the cost function** is a vector indicating the most effective adjustments (increases or decreases) to those weights and biases to minimize the cost.
 
-![[Image10.png]]
+![Image10.png](./Deep%20Learning%20Basics/Image10.png)
 
 The repeated process of adjusting inputs by a small amount in the direction of the negative gradient is known as **gradient descent**.
 
@@ -189,7 +189,7 @@ The **weights** that connect neurons from the first layer to a neuron in the sec
 
 When we analyze the actual weights from the first to the second layer, rather than identifying distinct edges or well-defined patterns, the weights often appear almost random, with only vague patterns emerging in the center.
 
-![[Image11.png]]
+![Image11.png](./Deep%20Learning%20Basics/Image11.png)
 
 This suggests that, within the vast 13,000-dimensional space of possible weights and biases, the network has found a **local minimum**. While this local minimum allows the network to classify most images successfully, the patterns it picks up are not as distinct or interpretable as we might expect. The network’s internal representations remain somewhat elusive, indicating that it doesn't necessarily align with our intuitive understanding of pattern recognition.
 
@@ -201,7 +201,7 @@ Backpropagation is an algorithm designed to compute the gradient, as discussed e
 
 For instance, imagine the negative gradient has been calculated. If the component for the first weight is 3.2, and for the second weight it's 0.1, this means the cost function is **32 times more sensitive** to changes in the first weight than the second. In other words, small adjustments to the first weight will have a much larger impact on reducing the cost than the same adjustments to the second weight.
 
-![[Image12.png]]
+![Image12.png](./Deep%20Learning%20Basics/Image12.png)
 
 ## Walkthrough Example
 
@@ -213,7 +213,7 @@ The size of these adjustments should be proportional to how far each neuron’s 
 
 By doing this, backpropagation ensures that the adjustments made by this single training example effectively reduce the network’s overall error.
 
-![[Image13.png]]
+![Image13.png](./Deep%20Learning%20Basics/Image13.png)
 
 Let’s now focus on a specific neuron, the one whose activation we want to increase. There are three main factors that can contribute to increasing that activation:
 
@@ -233,13 +233,13 @@ However, we also want to reduce the activation of all other output neurons in th
 
 In summary, backpropagation efficiently coordinates these desires by adjusting the weights and biases so that the cost function is reduced across all neurons, focusing on the most significant connections for each individual training example.
 
-![[Image14.png]]
+![Image14.png](./Deep%20Learning%20Basics/Image14.png)
 
 By summing all the desired changes from each training example, we get a list of nudges that need to be applied to the weights and biases in the second-to-last layer. Then, this process is applied recursively, moving backward through the network, adjusting all weights and biases accordingly.
 
 However, if we only used the adjustments from one training example, say an image of a "2," the network would become biased toward classifying all inputs as a "2." Therefore, we must apply this backpropagation process for every training example. Each training example provides its own set of desired adjustments, and we average these changes to determine the final adjustments to the weights and biases.
 
-![[Image15.png]]
+![Image15.png](./Deep%20Learning%20Basics/Image15.png)
 
 ### Stochastic Gradient Descent
 
@@ -250,11 +250,11 @@ Here's how it works:
 2. **Mini-batches**: Divide the shuffled data into smaller mini-batches, each containing, for example, 100 training examples.
 3. **Compute the gradient for each mini-batch**: Instead of computing the gradient for the entire training set, compute it for each mini-batch and adjust the weights and biases accordingly.
 
-![[Image16.png]]
+![Image16.png](./Deep%20Learning%20Basics/Image16.png)
 
 Although this mini-batch gradient is not as precise as calculating the gradient for the full dataset, it provides a good approximation while significantly speeding up the process. The network's path to minimizing the cost function becomes less precise (more like a "drunk man stumbling down a hill" rather than carefully calculating each step) but it is much faster.
 
-![[Image17.png]]
+![Image17.png](./Deep%20Learning%20Basics/Image17.png)
 
 By repeatedly going through all the mini-batches and making these approximate gradient steps, the network still converges toward a local minimum of the cost function, meaning it will still do a very good job on the training data.
 
@@ -266,13 +266,13 @@ This approach allows neural networks to learn efficiently even with massive data
 
 To begin, let's consider a simple neural network where each layer contains a single neuron:
 
-![[Image18.png]]
+![Image18.png](./Deep%20Learning%20Basics/Image18.png)
 
 Our objective is to understand how sensitive the cost function is to the variables within this network.
 
 We will focus on the connection between the last two neurons. The superscripts $L$ and $L-1$ denote the layers in which these neurons are located.
 
-![[Image19.png]]
+![Image19.png](./Deep%20Learning%20Basics/Image19.png)
 
 Let's say that the desired value for the last activation, for a given training example, is $y$. This value $y$ could be either 0 or 1.
 The cost function $C_0$ for a single training example can be defined as:
@@ -295,7 +295,7 @@ $$
 
 Here, $w^{(L)}$ represents the weights connecting the neurons from layer $L-1$ to layer $L$, $a^{(L-1)}$ is the activation of the neurons in the previous layer, and $b^{(L)}$ is the bias term for the neurons in layer $L$.
 
-![[Image20.png]]
+![Image20.png](./Deep%20Learning%20Basics/Image20.png)
 
 ### Sensitivity to the Weight
 
@@ -345,19 +345,16 @@ $$
 Combining all these components, we obtain:
 
 ```math
-$$
 \frac{\partial C_0}{\partial w^{(L)}} = 
 \frac{\partial z^{(L)}}{\partial w^{(L)}}
 \frac{\partial a^{(L)}}{\partial z^{(L)}}
 \frac{\partial C_0}{\partial a^{(L)}} 
 = a^{(L-1)} \times \sigma'(z^{(L)}) \times 2(a^{(L)} - y)
-$$
 ```
 
 This expression represents the derivative of the cost for a specific training example. Since the overall cost function is the average of costs across multiple training examples, its derivative requires averaging this expression over all training examples:
 
 ```math
-$$
 \underbrace{\frac{\partial C}{\partial w^{(L)}}}_{\begin{array}{c}
 \text{Derivative of} \\ 
 \text{full cost function}
@@ -366,13 +363,11 @@ $$
 \text{Average of all} \\ 
 \text{training examples}
 \end{array}}
-$$
 ```
 
 Ultimately, this is just one component of the gradient vector, which is constructed from the partial derivatives of the cost function with respect to all the weights and biases:
 
 ```math
-$$
 \nabla C = \begin{bmatrix}
     \frac{\partial C}{\partial w^{(1)}} \\ 
     \frac{\partial C}{\partial b^{(1)}} \\ 
@@ -380,7 +375,6 @@ $$
     \frac{\partial C}{\partial w^{(L)}} \\ 
     \frac{\partial C}{\partial b^{(L)}}
 \end{bmatrix}
-$$
 ```
 
 ### Sensitivity to the Bias
@@ -388,13 +382,11 @@ $$
 While $\frac{\partial C_0}{\partial w^{(L)}}$ represents just one of the many partial derivatives needed for our calculations, it accounts for more than 50% of the effort. The sensitivity of the cost function to the bias is almost identical; we simply replace $\frac{\partial z^{(L)}}{\partial w^{(L)}}$ with $\frac{\partial z^{(L)}}{\partial b^{(L)}}$. In this case, the derivative simplifies to 1.
 
 ```math
-$$
 \frac{\partial C_0}{\partial b^{(L)}} = 
 \frac{\partial z^{(L)}}{\partial b^{(L)}}
 \frac{\partial a^{(L)}}{\partial z^{(L)}}
 \frac{\partial C_0}{\partial a^{(L)}} 
 = 1 \times \sigma'(z^{(L)}) \times 2(a^{(L)} - y)
-$$
 ```
 
 ### Sensitivity to the Activation of the Previous Layer
@@ -402,47 +394,41 @@ $$
 Next, we can evaluate how sensitive the cost function is to the activation of the previous layer. This is where the concept of backpropagation becomes relevant.
 
 ```math
-$$
 \frac{\partial C_0}{\partial a^{(L-1)}} =
 \frac{\partial z^{(L)}}{\partial a^{(L-1)}}
 \frac{\partial a^{(L)}}{\partial z^{(L)}}
 \frac{\partial C_0}{\partial a^{(L)}} 
 = w^{(L)} \times \sigma'(z^{(L)}) \times 2(a^{(L)} - y)
-$$
 ```
 
 Here, the derivative $\frac{\partial z^{(L)}}{\partial a^{(L-1)}}$, which reflects the sensitivity of $z$ to the activation of the previous layer, is equal to the weight $w^{(L)}$.
 
 Although we cannot directly influence the activation of the previous layer, keeping track of this sensitivity is beneficial. We can continue to apply the chain rule recursively to determine how the cost function is influenced by the preceding weights and biases.
 
-![[Image21.png]]
+![Image21.png](./Deep%20Learning%20Basics/Image21.png)
 
 ## Layers with Multiple Neurons
 
 When incorporating multiple neurons into the layers of a neural network, the overall structure remains similar, though additional indices are needed to keep track of the various elements:
 
-![[Image22.png]]
+![Image22.png](./Deep%20Learning%20Basics/Image22.png)
 
 The chain rule expression that describes how sensitive the cost is to a specific weight retains its basic form:
 
 ```math
-$$
 \frac{\partial C_0}{\partial w^{(L)}_{jk}} = 
 \frac{\partial z^{(L)}_j}{\partial w^{(L)}_{jk}}
 \frac{\partial a^{(L)}_j}{\partial z^{(L)}_j}
 \frac{\partial C_0}{\partial a^{(L)}_j}
-$$
 ```
 
 However, the derivative of the cost with respect to one of the activations in layer $L-1$ changes in this context. In this case, each neuron influences the cost function through multiple pathways. Specifically, a neuron affects all neurons in the subsequent layer, and we need to aggregate these contributions. This results in the following expression:
 
 ```math
-$$
 \frac{\partial C_0}{\partial a^{(L-1)}_{k}} = \underbrace{\sum^{n_{L}}_{j=0}
 \frac{\partial z^{(L)}_j}{\partial a^{(L-1)}_{k}}
 \frac{\partial a^{(L)}_j}{\partial z^{(L)}_j}
 \frac{\partial C_0}{\partial a^{(L)}_j}}_{\text{Sum over layer } L}
-$$
 ```
 
 This summation accounts for the influence of the activation $a^{(L-1)}_{k}$ on the cost through all neurons $j$ in layer $L$.
